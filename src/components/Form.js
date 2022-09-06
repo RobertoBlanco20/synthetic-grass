@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
+import { calcularDensidad } from './helper'
 import styled from "@emotion/styled";
 
 const Formulario = styled.form`
@@ -88,14 +89,22 @@ const Form = () => {
         
         setError(false)
         
-
-        // Si pasa la validacion: 
+        // Si pasa la validacion:
         // Calcular costo de la densidad
+        let resultado = 7000 * calcularDensidad(density);
+
+        // Calcular costo x mt2
+        resultado *= mts;
+        
 
         
-        // Calcular costo x mt2
-
+        
         // Calcuar costo SOLO si requiere instalacion
+        if(plan === 'colocado'){
+            resultado *= 1.20
+        }
+
+        console.log(resultado)
     }
 
     return ( 
@@ -106,7 +115,7 @@ const Form = () => {
 
                 { error ? <MensajeError>Todos los campos son obligatorios</MensajeError>  : null } 
                 <Div>
-                    <Label for="density">Densidad</Label>
+                    <Label htmlFor="density">Densidad</Label>
                     <Select
                         name="density"
                         value={density}
@@ -119,7 +128,7 @@ const Form = () => {
                     </Select>
                 </Div>
                 <Div>
-                <Label for="mts">Superficie</Label>
+                <Label htmlFor="mts">Superficie</Label>
                     <Select
                         name="mts"
                         value={mts}
