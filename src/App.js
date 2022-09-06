@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from './components/Header'
+import Form from './components/Form'
+import styled from "@emotion/styled";
 
 function App() {
+
+  const Main = styled.main`
+    max-width: 40%;
+    margin: 1em auto;
+    background-color: #A7C957;
+    color: #FFFBFE;
+    border-radius: 5px;
+  `;
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Main>
+      <Header 
+        title="Syntethic Grass"
+      />
+      <Form />
+    </Main>
   );
 }
 
