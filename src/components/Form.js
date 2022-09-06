@@ -1,9 +1,7 @@
+import React, {useState} from 'react'
 import styled from "@emotion/styled";
 
-
-const Form = () => {
-
-    const Formulario = styled.form`
+const Formulario = styled.form`
         font-weight: 600;
         padding: 0 1em 1em 1em;
     `;
@@ -28,6 +26,19 @@ const Form = () => {
 
     `;
 
+    const InputRadio = styled.input`
+        margin: 0 1em;
+    `;
+
+    const MensajeError = styled.div`
+        background-color: #bc4749;
+        color: #fff;
+        padding: 1em 0;
+        text-align: center;
+        width: 100%;
+
+    `
+
     const Button = styled.button`
         display: block;
         width: 100%;
@@ -38,19 +49,70 @@ const Form = () => {
         font-size: 1.3em;
         font-weight: bold;
         border-radius: 5px;
+        transition: background-color .3s;
         &:hover {
             background-color: #6A994E;
             cursor: pointer;
         }
     `;
 
+
+const Form = () => {
+    
+    const [ data, setData ] = useState({
+        density: '',
+        mts: '',
+        plan: ''
+    })
+
+    const [ error, setError ] = useState(false)
+
+    const {density, mts, plan} = data
+
+    const updateData = e => {
+        setData({
+            ...data,
+            [e.target.name] : e.target.value
+        })
+
+    } 
+
+    const handleSubmit = e => {
+        e.preventDefault();
+
+        // Validar 
+        if( density.trim() === ''  || mts.trim() === '' || plan.trim() === ''){
+            setError(true)
+            return;
+        }
+        
+        setError(false)
+        
+
+        // Si pasa la validacion: 
+        // Calcular costo de la densidad
+
+        
+        // Calcular costo x mt2
+
+        // Calcuar costo SOLO si requiere instalacion
+    }
+
     return ( 
         
-            <Formulario>
+            <Formulario
+                onSubmit={handleSubmit}
+            >
+
+                { error ? <MensajeError>Todos los campos son obligatorios</MensajeError>  : null } 
                 <Div>
                     <Label for="density">Densidad</Label>
-                    <Select>
-                        <option value="none">Seleccione un valor</option>
+                    <Select
+                        name="density"
+                        value={density}
+                        onChange={updateData}
+                    >
+                        <option value="">Seleccione un valor</option>
                         <option value="high">Fibra Alta (40mm a 60mm)</option>
                         <option value="medium">Fibra Media (20 a 35mm)</option>
                         <option value="low">Fibra Baja (5mm a 15mm)</option>
@@ -58,8 +120,12 @@ const Form = () => {
                 </Div>
                 <Div>
                 <Label for="mts">Superficie</Label>
-                    <Select>
-                        <option value="none">Seleccione un valor</option>
+                    <Select
+                        name="mts"
+                        value={mts}
+                        onChange={updateData}
+                    >
+                        <option value="">Seleccione un valor</option>
                         <option value="10">10 mts2</option>
                         <option value="20">20 mts2</option>
                         <option value="30">30 mts2</option>
@@ -77,11 +143,11 @@ const Form = () => {
                 </Div>
                 <Div>
                     <Label>Trabajo</Label> 
-                    <input type="radio" name="trabajo" value='materiales'/> Materiales
-                    <input type="radio" name="trabajo" value="colocado"/> Colocado 
+                    <InputRadio onChange={updateData} type="radio" name="plan" value='materiales' checked={plan === 'materiales'}/> Materiales
+                    <InputRadio onChange={updateData} type="radio" name="plan" value="colocado" checked={plan === 'colocado'}/> Colocado 
                 </Div>
 
-                <Button type="button">Cotizar</Button>
+                <Button type="submit">Cotizar</Button>
             </Formulario>
 
      );
