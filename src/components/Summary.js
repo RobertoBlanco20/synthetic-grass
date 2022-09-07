@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { tipoTrabajo } from '../helper'
 import styled from "@emotion/styled";
 
@@ -37,6 +38,10 @@ const Summary = ({summary}) => {
             <H2>Total: ${total}</H2>
         </Div>
      );
+}
+
+Summary.propTypes = {
+    summary: PropTypes.object.isRequired,
 }
  
 export default Summary;

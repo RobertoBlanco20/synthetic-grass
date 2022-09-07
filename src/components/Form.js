@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import { calcularDensidad } from '../helper'
+import { calcularDensidad } from '../helper';
+import PropTypes from 'prop-types';
 import styled from "@emotion/styled";
 
 const Formulario = styled.form`
@@ -181,6 +182,11 @@ const Form = ({setSummary, setUpdate}) => {
             </Formulario>
 
      );
+}
+
+Form.propTypes = {
+    setSummary: PropTypes.func.isRequired,
+    setUpdate:  PropTypes.func.isRequired
 }
  
 export default Form;

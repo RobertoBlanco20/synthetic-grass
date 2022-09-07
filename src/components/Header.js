@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import PropTypes from 'prop-types'
 
 const HeaderTitle = styled.header`
         text-align: center;
@@ -21,4 +22,8 @@ const Header = ({title}) => {
      );
 }
  
+Header.propTypes = {
+        title: PropTypes.string.isRequired
+}
+
 export default Header;
