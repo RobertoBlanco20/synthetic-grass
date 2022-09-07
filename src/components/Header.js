@@ -2,10 +2,12 @@ import styled from "@emotion/styled";
 
 const HeaderTitle = styled.header`
         text-align: center;
-        background-color: #386641;
         border-radius: 5px 5px 0 0;
 `
 
+const H1 = styled.h1`
+        color: #386641;
+`
 
 
 const Header = ({title}) => {
@@ -14,7 +16,7 @@ const Header = ({title}) => {
 
     return ( 
         <HeaderTitle>
-                <h1> {title} </h1>
+                <H1> {title} </H1>
         </HeaderTitle>
      );
 }

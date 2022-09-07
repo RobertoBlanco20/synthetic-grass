@@ -15,7 +15,14 @@ const Formulario = styled.form`
         flex: 0 0 100px;
         width: 100px;
         margin-right: 1em;
+        color: #386641;
+        font-weight: 400;
     `;
+
+    const Span = styled.span`
+        color: #386641;
+        font-weight: 300;
+    `
 
     const Select = styled.select`
         display: inline-block;
@@ -52,13 +59,14 @@ const Formulario = styled.form`
         border-radius: 5px;
         transition: background-color .3s;
         &:hover {
-            background-color: #6A994E;
+            background-color: transparent;
             cursor: pointer;
+            color: #386641;
         }
     `;
 
 
-const Form = ({setSummary}) => {
+const Form = ({setSummary, setUpdate}) => {
     
     const [ data, setData ] = useState({
         density: '',
@@ -104,13 +112,20 @@ const Form = ({setSummary}) => {
             resultado *= 1.20
         }
 
-        console.log(resultado)
 
-        // Pasandole los datos al componente principal
-        setSummary({
-            total: resultado,
-            data
-        })
+        setUpdate(true)
+
+        
+        setTimeout( () => {
+
+            setUpdate(false)
+
+            setSummary({
+                total: resultado,
+                data
+            })
+
+        }, 3000 )       
     }
 
     return ( 
@@ -158,8 +173,8 @@ const Form = ({setSummary}) => {
                 </Div>
                 <Div>
                     <Label>Trabajo</Label> 
-                    <InputRadio onChange={updateData} type="radio" name="plan" value='materiales' checked={plan === 'materiales'}/> Materiales
-                    <InputRadio onChange={updateData} type="radio" name="plan" value="colocado" checked={plan === 'colocado'}/> Colocado 
+                    <InputRadio onChange={updateData} type="radio" name="plan" value='materiales' checked={plan === 'materiales'}/> <Span>Materiales</Span>
+                    <InputRadio onChange={updateData} type="radio" name="plan" value="colocado" checked={plan === 'colocado'}/> <Span>Colocado</Span> 
                 </Div>
 
                 <Button type="submit">Cotizar</Button>

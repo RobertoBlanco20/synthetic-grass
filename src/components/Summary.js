@@ -4,12 +4,21 @@ import styled from "@emotion/styled";
 
 
 const Div = styled.div`
-    background-color: #386641;
+    background-image: 'url(../descarga.png)';
     padding: 1em;
+    border: 1px solid #386641;
+    border-radius: 5px;
 `
 
 const H2 = styled.h2`
     text-align: center;
+    color: #386641;
+`
+
+const Ul = styled.ul`
+    text-align: center;
+    color: #386641;
+    font-weight: 300;
 `
 
 const Summary = ({summary}) => {
@@ -18,12 +27,14 @@ const Summary = ({summary}) => {
 
     return ( 
         <Div>
-            <H2>Resultado de la cotización: ${total}</H2>
-            <ul>
+            <H2>Resumen de la cotización: </H2>
+            <Ul>
                 <li>Densidad elegida: {density}</li>
                 <li>Metros Cuadrados: {mts} mt2</li>
                 <li>Tipo de trabajo: {tipoTrabajo(plan)}</li>
-            </ul>
+            </Ul>
+
+            <H2>Total: ${total}</H2>
         </Div>
      );
 }
