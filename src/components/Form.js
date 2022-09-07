@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { calcularDensidad } from './helper'
+import { calcularDensidad } from '../helper'
 import styled from "@emotion/styled";
 
 const Formulario = styled.form`
@@ -58,7 +58,7 @@ const Formulario = styled.form`
     `;
 
 
-const Form = () => {
+const Form = ({setSummary}) => {
     
     const [ data, setData ] = useState({
         density: '',
@@ -91,7 +91,7 @@ const Form = () => {
         
         // Si pasa la validacion:
         // Calcular costo de la densidad
-        let resultado = 7000 * calcularDensidad(density);
+        let resultado = 5000 * calcularDensidad(density);
 
         // Calcular costo x mt2
         resultado *= mts;
@@ -105,6 +105,12 @@ const Form = () => {
         }
 
         console.log(resultado)
+
+        // Pasandole los datos al componente principal
+        setSummary({
+            total: resultado,
+            data
+        })
     }
 
     return ( 
@@ -122,9 +128,9 @@ const Form = () => {
                         onChange={updateData}
                     >
                         <option value="">Seleccione un valor</option>
-                        <option value="high">Fibra Alta (40mm a 60mm)</option>
-                        <option value="medium">Fibra Media (20 a 35mm)</option>
-                        <option value="low">Fibra Baja (5mm a 15mm)</option>
+                        <option value="Alta">Fibra Alta (40mm a 60mm)</option>
+                        <option value="Media">Fibra Media (20 a 35mm)</option>
+                        <option value="Baja">Fibra Baja (5mm a 15mm)</option>
                     </Select>
                 </Div>
                 <Div>

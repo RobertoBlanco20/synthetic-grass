@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 const HeaderTitle = styled.header`
         text-align: center;
-        background-image: url('grass-1582.svg');
+        background-color: #386641;
         border-radius: 5px 5px 0 0;
 `
 

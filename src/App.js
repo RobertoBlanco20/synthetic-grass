@@ -1,5 +1,7 @@
+import React, { useState }from 'react';
 import Header from './components/Header'
 import Form from './components/Form'
+import Summary from './components/Summary'
 import styled from "@emotion/styled";
 
 
@@ -14,14 +16,30 @@ const Main = styled.main`
 
 
 function App() {
-  
+
+  const [ summary, setSummary ] = useState({})
+
+  const {data} = summary
+
   return (
     <Main>
       <Header 
         title="Syntethic Grass"
       />
 
-      <Form />
+     
+          <Form 
+            setSummary={setSummary}
+          /> 
+
+      
+      { data ? 
+          <Summary 
+            summary={summary}
+          />
+      : null }
+
+
     </Main>
   );
 }
